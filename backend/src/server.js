@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import { checkDatabaseConnection } from './config/db.js';
+import authRoutes from './routes/auth.routes.js';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -26,9 +27,11 @@ app.get('/api/health', async (_req, res) => {
 app.get('/api', (_req, res) => {
   res.json({
     name: 'Gestion Negocios SaaS API',
-    version: '0.1.0',
+    version: '0.2.0',
   });
 });
+
+app.use('/api/auth', authRoutes);
 
 app.listen(PORT, () => {
   console.log(`API running on http://localhost:${PORT}`);
