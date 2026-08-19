@@ -7,6 +7,7 @@
 * { box-sizing: border-box; }
 body { margin: 0; min-width: 320px; }
 button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
 
 .page-shell {
   min-height: 100vh;
@@ -40,6 +41,8 @@ h1 {
   line-height: 0.95;
 }
 
+h2 { margin-top: 0; }
+
 p {
   color: #5f6c7b;
   font-size: 1.05rem;
@@ -47,10 +50,76 @@ p {
   max-width: 620px;
 }
 
-.status-box {
-  margin-top: 28px;
+.status-box,
+.form-message {
+  margin-top: 20px;
   padding: 14px 16px;
   background: #f6f8fb;
   border-radius: 12px;
   font-weight: 600;
+}
+
+.auth-card,
+.session-card {
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid #e7ebf2;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.auth-tabs button,
+form button,
+.session-card button {
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 16px;
+  font-weight: 700;
+}
+
+.auth-tabs button {
+  background: #edf1f6;
+  color: #526174;
+}
+
+.auth-tabs button.active,
+form button,
+.session-card button {
+  background: #172033;
+  color: white;
+}
+
+form {
+  display: grid;
+  gap: 16px;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  font-weight: 650;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #d9e0ea;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: white;
+  color: #172033;
+}
+
+input:focus {
+  outline: 2px solid #b8c5d6;
+  border-color: #91a1b6;
+}
+
+@media (max-width: 560px) {
+  .page-shell { padding: 12px; }
+  .hero-card { border-radius: 18px; padding: 24px; }
+  .auth-tabs { flex-direction: column; }
 }
