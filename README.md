@@ -23,7 +23,7 @@ Construir una plataforma multiempresa que permita administrar productos, inventa
 - Frontend: React + Vite
 - Backend: Node.js + Express
 - Base de datos: PostgreSQL
-- Autenticación: JWT (siguiente etapa)
+- Autenticación: JWT
 
 ## Ejecutar en local
 
@@ -37,6 +37,12 @@ npm run dev
 ```
 
 Antes de iniciar, crea una base PostgreSQL llamada `gestion_negocios` o modifica `DATABASE_URL` en `backend/.env`.
+
+Aplica el esquema inicial y sus nuevas tablas sobre la base configurada:
+
+```bash
+psql "$DATABASE_URL" -f src/db/schema.sql
+```
 
 La API queda disponible en `http://localhost:4000/api` y el health check en `http://localhost:4000/api/health`.
 
@@ -53,20 +59,20 @@ npm run dev
 
 El frontend queda disponible normalmente en `http://localhost:5173`.
 
-## Estructura actual
+## Módulos disponibles
 
-```text
-backend/
-  src/
-    config/db.js
-    server.js
-frontend/
-  src/
-    App.jsx
-    main.jsx
-    styles.css
+- Registro, inicio de sesión y recuperación de sesión mediante JWT
+- Separación multiempresa basada en el `business_id` del usuario autenticado
+- Catálogo de productos con SKU, precios, costos y stock mínimo
+- Entradas, salidas y ajustes de inventario con historial auditable
+- Búsqueda de productos, alertas de stock bajo y resumen valorizado
+
+## Pruebas
+
+```bash
+cd backend
+npm test
+
+cd ../frontend
+npm run build
 ```
-
-## Próxima etapa
-
-Implementar modelo multiempresa, migraciones SQL y autenticación de usuarios con contraseñas cifradas y JWT.

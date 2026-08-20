@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import { checkDatabaseConnection } from './config/db.js';
 import authRoutes from './routes/auth.routes.js';
+import productRoutes from './routes/products.routes.js';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -32,6 +33,7 @@ app.get('/api', (_req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/products', productRoutes);
 
 app.listen(PORT, () => {
   console.log(`API running on http://localhost:${PORT}`);
